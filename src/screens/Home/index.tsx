@@ -127,6 +127,6 @@ const styles = StyleSheet.create({
   botaoTexto: {
     color: "#fff",
     fontSize: 16,
-    fontWeight: "bold",
+    // fontWeight: "bol",
   },
 });

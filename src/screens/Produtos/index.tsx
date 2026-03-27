@@ -10,12 +10,23 @@ export default function Produtos({ navigation }: Props) {
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.titulo}>Produtos</Text>
+        <View style={styles.linha}>
         <Text style={styles.subtitulo}>
           Tablet - Samsung Galaxy Tab S7 - R$ 2.499,00
-          Teclado - Logitech K380 - R$ 299,00
-
         </Text>
-
+        <Text style={styles.subtitulo}>
+          Teclado - Logitech K380 - R$ 299,00
+        </Text>
+        <Text style={styles.subtitulo}>
+          Fone de Ouvido - Sony WH - R$ 1.499,00
+        </Text>
+        <Text style={styles.subtitulo}>  
+          Mouse - Razer DeathAdder V2 - R$ 399,00
+        </Text>
+        <Text style={styles.subtitulo}>
+          Monitor - LG UltraFine 4K - R$ 3.999,00
+        </Text>
+      </View>
         <Pressable
           style={styles.botao}
           onPress={() => navigation.popTo("Home")}
@@ -36,7 +47,7 @@ export default function Produtos({ navigation }: Props) {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -81,4 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  linha: {
+    flexDirection: "column",
+    alignItems: "center"}
 });
