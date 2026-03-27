@@ -45,9 +45,16 @@ export default function Produtos({ navigation }: Props) {
           <Text style={styles.botaoTexto}>Ir para Contato</Text>
         </Pressable>
       </View>
+      {/* botao de carrinho */}
+      <Pressable
+        style={[styles.botao, styles.botaoSecundario]}
+        onPress={() => alert("Produto adicionado ao carrinho!")}
+      >
+        <Text style={styles.botaoTexto}>Adicionar ao Carrinho</Text>
+      </Pressable>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
