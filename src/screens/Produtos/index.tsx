@@ -6,7 +6,6 @@ import type { RootStackParamList } from "../../../App";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Produtos">;
 
-
 const PRODUTOS = [
   {
     id: "1",
@@ -45,7 +44,7 @@ const PRODUTOS = [
   },
 ];
 
-// Subcomponente para isolar o estado de quantidade de cada produto
+// Aqui é um componente funcional para isolar o estado de quantidade de cada produto
 const ProdutoCard = ({ produto }: { produto: any }) => {
   const [quantidade, setQuantidade] = useState(1);
 
@@ -57,30 +56,30 @@ const ProdutoCard = ({ produto }: { produto: any }) => {
   };
 
   return (
-    <View style={styles.produtoCard}>
-      <Image source={{ uri: produto.imagem }} style={styles.imagemProduto} />
+    <View style={estilos.cartaoItem}>
+      <Image source={{ uri: produto.imagem }} style={estilos.fotoItem} />
       
-      <View style={styles.infoProduto}>
-        <Text style={styles.nomeProduto}>{produto.nome}</Text>
-        <Text style={styles.precoNormal}>R$ {produto.precoNormal} no cartão</Text>
-        <Text style={styles.precoPix}>R$ {produto.precoPix} no PIX</Text>
+      <View style={estilos.dadosProduto}>
+        <Text style={estilos.tituloItem}>{produto.nome}</Text>
+        <Text style={estilos.valorPrazo}>R$ {produto.precoNormal} no cartão</Text>
+        <Text style={estilos.valorAVista}>R$ {produto.precoPix} no PIX</Text>
         
-        <View style={styles.controlesContainer}>
-          <View style={styles.quantidadeContainer}>
-            <Pressable onPress={diminuirQtd} style={styles.btnQuantidade}>
-              <Text style={styles.btnQuantidadeTexto}>-</Text>
+        <View style={estilos.areaAcoes}>
+          <View style={estilos.seletorQuantidade}>
+            <Pressable onPress={diminuirQtd} style={estilos.areaToqueSinal}>
+              <Text style={estilos.simboloOperacao}>-</Text>
             </Pressable>
-            <Text style={styles.textoQuantidade}>{quantidade}</Text>
-            <Pressable onPress={aumentarQtd} style={styles.btnQuantidade}>
-              <Text style={styles.btnQuantidadeTexto}>+</Text>
+            <Text style={estilos.numeroVisor}>{quantidade}</Text>
+            <Pressable onPress={aumentarQtd} style={estilos.areaToqueSinal}>
+              <Text style={estilos.simboloOperacao}>+</Text>
             </Pressable>
           </View>
 
           <Pressable
-            style={[styles.botao, styles.botaoCarrinhoMini]}
+            style={[estilos.btnPrimario, estilos.btnAddAoCarrinho]}
             onPress={adicionarAoCarrinho}
           >
-            <Text style={styles.botaoTextoMini}>Adicionar</Text>
+            <Text style={estilos.rotuloBtnPequeno}>Adicionar</Text>
           </Pressable>
         </View>
       </View>
@@ -88,29 +87,27 @@ const ProdutoCard = ({ produto }: { produto: any }) => {
   );
 };
 
-//Componente Principal da Tela
+
 export default function Produtos({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.tituloSecao}>Nossos Produtos</Text>
+    <SafeAreaView style={estilos.telaGeral}>
+      <Text style={estilos.cabecalhoPagina}>Nossos Produtos</Text>
       
-      {/* ScrollView para permitir rolagem da lista de produtos */}
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollList}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={estilos.listaRolavel}>
         {PRODUTOS.map((prod) => (
           <ProdutoCard key={prod.id} produto={prod} />
         ))}
 
-        {/* Botões de Navegação no final da lista */}
-        <View style={styles.navContainer}>
-          <Pressable style={styles.botao} onPress={() => navigation.popTo("Home")}>
-            <Text style={styles.botaoTexto}>Home</Text>
+        <View style={estilos.rodapeNavegacao}>
+          <Pressable style={estilos.btnPrimario} onPress={() => navigation.popTo("Home")}>
+            <Text style={estilos.rotuloBtnPadrao}>Home</Text>
           </Pressable>
 
           <Pressable
-            style={[styles.botao, styles.botaoSecundario]}
+            style={[estilos.btnPrimario, estilos.btnAlternativo]}
             onPress={() => navigation.navigate("Contato")}
           >
-            <Text style={styles.botaoTexto}>Contato</Text>
+            <Text style={estilos.rotuloBtnPadrao}>Contato</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -118,24 +115,23 @@ export default function Produtos({ navigation }: Props) {
   );
 }
 
-
-const styles = StyleSheet.create({
-  container: {
+const estilos = StyleSheet.create({
+  telaGeral: {
     flex: 1,
     backgroundColor: "#f1f5f9",
   },
-  tituloSecao: {
+  cabecalhoPagina: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#0f172a",
     textAlign: "center",
     marginVertical: 16,
   },
-  scrollList: {
+  listaRolavel: {
     paddingHorizontal: 16,
     paddingBottom: 20,
   },
-  produtoCard: {
+  cartaoItem: {
     backgroundColor: "#ffffff",
     borderRadius: 12,
     padding: 16,
@@ -148,38 +144,38 @@ const styles = StyleSheet.create({
     flexDirection: "row", 
     alignItems: "center",
   },
-  imagemProduto: {
+  fotoItem: {
     width: 80,
     height: 80,
     borderRadius: 8,
     marginRight: 16,
   },
-  infoProduto: {
+  dadosProduto: {
     flex: 1,
   },
-  nomeProduto: {
+  tituloItem: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#0f172a",
     marginBottom: 4,
   },
-  precoNormal: {
+  valorPrazo: {
     fontSize: 12,
     color: "#64748b",
     textDecorationLine: "line-through",
   },
-  precoPix: {
+  valorAVista: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#16a34a", // Verde para destacar o Pix
+    color: "#16a34a", 
     marginBottom: 10,
   },
-  controlesContainer: {
+  areaAcoes: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  quantidadeContainer: {
+  seletorQuantidade: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#f1f5f9",
@@ -187,46 +183,46 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#e2e8f0",
   },
-  btnQuantidade: {
+  areaToqueSinal: {
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
-  btnQuantidadeTexto: {
+  simboloOperacao: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#0f172a",
   },
-  textoQuantidade: {
+  numeroVisor: {
     fontSize: 16,
     fontWeight: "bold",
     paddingHorizontal: 8,
   },
-  navContainer: {
+  rodapeNavegacao: {
     marginTop: 20,
     paddingHorizontal: 10,
   },
-    botao: {
+  btnPrimario: {
     backgroundColor: "#b6c608",
     padding: 15,
     borderRadius: 50,
     alignItems: "center",
     marginBottom: 10,
   },
-  botaoSecundario: {
+  btnAlternativo: {
     backgroundColor: "#39aeb4f3",
   },
-  botaoTexto: {
+  rotuloBtnPadrao: {
     color: "#fff",
     fontSize: 15,
   },
-  botaoCarrinhoMini: {
+  btnAddAoCarrinho: {
     backgroundColor: "#3b42b6",
     marginBottom: 0,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
   },
-  botaoTextoMini: {
+  rotuloBtnPequeno: {
     color: "#fff",
     fontSize: 13,
     fontWeight: "bold",

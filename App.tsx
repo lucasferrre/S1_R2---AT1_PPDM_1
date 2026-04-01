@@ -5,13 +5,11 @@ import Home from "./src/screens/Home";
 import Produtos from "./src/screens/Produtos";
 import Contato from "./src/screens/Contatos";
 
-
 export type RootStackParamList = { 
   Home: undefined;
   Produtos: undefined;
   Contato: undefined;
 };
-
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,6 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName="Home" 
         screenOptions={{
           headerStyle: {
             backgroundColor: "#42b2b8",
@@ -27,6 +26,8 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: "bold",
           },
+          headerTitleAlign: "center", 
+          headerShadowVisible: false, 
           contentStyle: {
             backgroundColor: "#f1f5f9",
           },
@@ -35,17 +36,17 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: "Home" }}
+          options={{ title: "Página Inicial" }} 
         />
         <Stack.Screen
           name="Produtos"
           component={Produtos}
-          options={{ title: "Produtos" }}
+          options={{ title: "Nossos Produtos" }}
         />
         <Stack.Screen
           name="Contato"
           component={Contato}
-          options={{ title: "Contato" }}
+          options={{ title: "Fale Conosco" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
