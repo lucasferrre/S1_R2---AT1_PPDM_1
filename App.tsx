@@ -5,14 +5,14 @@ import Home from "./src/screens/Home";
 import Produtos from "./src/screens/Produtos";
 import Contato from "./src/screens/Contatos";
 
-// rootstackparamlist é um tipo que define as rotas
-export type RootStackParamList = { // deixando undefined apenas para o typeScript entender
+
+export type RootStackParamList = { 
   Home: undefined;
   Produtos: undefined;
   Contato: undefined;
 };
 
-// criando a pilha de navegação
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
@@ -21,14 +21,14 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#0f172a",
+            backgroundColor: "#42b2b8",
           },
-          headerTintColor: "#fff",
+          headerTintColor: "#ffffff",
           headerTitleStyle: {
             fontWeight: "bold",
           },
           contentStyle: {
-            backgroundColor: "#f8fafc",
+            backgroundColor: "#f1f5f9",
           },
         }}
       >
